@@ -8,22 +8,37 @@
 </head>
 <body>
     <h1>Library</h1>
-    <form action="" class="add-book">
+    <form action="" id="add-book">
         <fieldset>
             <legend>Add A Book</legend>
             <div>
-                <label for="bookName">Book Name</label>
+                <label for="bookName">Book Name: </label>
                 <input type="text" name="bookName" id="bookName">
             </div>
             <div>
-                <label for="author"> Author Name</label>
+                <label for="author">Author Name: </label>
                 <input type="text" name="author" id="author">
             </div>
             <div>
-                <label for="">Num of Pages</label>
+                <label for="">Num of Pages: </label>
                 <input type="text" name="pages" id="pages">
             </div>
         </fieldset>
+        <button type="button" form="add-book" id="add-button">ADD</button>
     </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Book</th>
+                <th>Author</th>
+                <th># of Pages</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
 </body>
+<script src="scripts.js"></script>
 </html>
