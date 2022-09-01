@@ -25,19 +25,28 @@ function addBookToLibrary() {
         const pages = document.querySelector('#pages');
         
         const newBook = new book(bookName.value, author.value, pages.value);
-        const newEntry = document.createElement("tr");
-
-        let bookDetails = Object.values(newBook);
-        for (let i = 0; i < 3; i++ ) {
-            let columnItem = document.createElement("td");
-            columnItem.innerHTML = bookDetails[i];
-            console.log(columnItem)
-            newEntry.appendChild(columnItem);
-        }
-
-        bookTable.appendChild(newEntry);
+        myLibrary.push(newBook);
         [bookName.value, author.value, pages.value] = "", "", "";
     })
 }
 
+
+function displayLibrary() {
+    for (const book in myLibrary) {
+        const newEntry = document.createElement("div");
+        newEntry.classList.add("book")
+        let bookDetails = Object.values(book);
+        for (let i = 0; i < 4; i++) {
+            let detail = document.createElement("div");
+            detail.innerHTML = bookDetails[i];
+            console.log(detail)
+            newEntry.appendChild(detail);
+        }
+
+        bookTable.appendChild(newEntry);
+    }
+}
+
 addBookToLibrary()
+
+
