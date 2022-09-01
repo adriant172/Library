@@ -18,6 +18,16 @@ function book(name, author, numOfPages, read) {
     }
 }
 
+function showAddBookForm() {
+    const showFormButton = document.querySelector('.show-form');
+    const addBookForm = document.querySelector('#add-book');
+
+    showFormButton.addEventListener('click', () => {
+        addBookForm.style.display = "block";
+        showFormButton.style.display = "none"
+    } )
+}
+
 function addBookToLibraryContainer() {
     const latestEntry = myLibrary.slice(-1)[0]
     console.log(latestEntry)
@@ -59,6 +69,7 @@ function displayLibrary() {
 
 /// END FUNCTIONS ///
 
+showAddBookForm()
 
 displayLibrary()
 
