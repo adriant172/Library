@@ -1,5 +1,8 @@
 let myLibrary = [];
+let libraryContainer = document.querySelector(".library-container")
 
+
+/// FUNCTIONS ///
 function book(name, author, numOfPages, read) {
     this.name = name;
     this.author = author;
@@ -15,38 +18,52 @@ function book(name, author, numOfPages, read) {
     }
 }
 
+function addBookToLibraryContainer() {
+    const latestEntry = myLibrary.slice(-1)[0]
+    console.log(latestEntry)
+    const newEntry = document.createElement("div");
+    newEntry.classList.add("book")
+    let bookDetails = Object.values(latestEntry);
+    for (let i = 0; i < 4; i++) {
+        let detail = document.createElement("div");
+        detail.innerHTML = bookDetails[i];
+        console.log(detail)
+        newEntry.appendChild(detail);
+    }
+    libraryContainer.appendChild(newEntry);
+}
+
 function addBookToLibrary() {
     const addBookButton = document.querySelector("#add-button");
-    const bookTable = document.querySelector("tbody")
 
-    addBookButton.addEventListener('click', () => {
+    addBookButton.addEventListener('click', (event) => {
         const bookName = document.querySelector('#bookName');
         const author = document.querySelector('#author');
         const pages = document.querySelector('#pages');
+        const read = document.querySelector('#read');
         
-        const newBook = new book(bookName.value, author.value, pages.value);
+        const newBook = new book(bookName.value, author.value, pages.value, read.value);
+        
         myLibrary.push(newBook);
-        [bookName.value, author.value, pages.value] = "", "", "";
+        console.log(myLibrary);
+
+        addBookToLibraryContainer();
+    }) 
+}
+
+function displayLibrary() {
+    myLibrary.forEach((book) => {
+        addBookToLibraryContainer();
     })
 }
 
+/// END FUNCTIONS ///
 
-function displayLibrary() {
-    for (const book in myLibrary) {
-        const newEntry = document.createElement("div");
-        newEntry.classList.add("book")
-        let bookDetails = Object.values(book);
-        for (let i = 0; i < 4; i++) {
-            let detail = document.createElement("div");
-            detail.innerHTML = bookDetails[i];
-            console.log(detail)
-            newEntry.appendChild(detail);
-        }
 
-        bookTable.appendChild(newEntry);
-    }
-}
+displayLibrary()
 
 addBookToLibrary()
+
+
 
 
