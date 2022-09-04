@@ -45,3 +45,7 @@ h1 {
     background-color: saddlebrown;
     border-radius: 25px;
 }
+.book div:nth-child(1) {
+    font-size: 30px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}

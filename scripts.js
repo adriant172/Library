@@ -45,6 +45,7 @@ function addBookToLibraryContainer() {
 
 function addBookToLibrary() {
     const addBookButton = document.querySelector("#add-button");
+    const newBookForm =  document.querySelector("#add-book");
 
     addBookButton.addEventListener('click', (event) => {
         const bookName = document.querySelector('#bookName');
@@ -58,6 +59,8 @@ function addBookToLibrary() {
         console.log(myLibrary);
 
         addBookToLibraryContainer();
+        newBookForm.reset()
+
     }) 
 }
 
