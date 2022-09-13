@@ -3,7 +3,7 @@ let libraryContainer = document.querySelector(".library-container")
 
 
 /// FUNCTIONS ///
-function book(name, author, numOfPages, read) {
+function book(name, author, numOfPages, read, index) {
     this.name = name;
     this.author = author;
     this.pages = numOfPages;
@@ -16,6 +16,7 @@ function book(name, author, numOfPages, read) {
         }
         return `${name} by ${author}, ${numOfPages} pages, ${readYetMessage}`
     }
+    this.index = index;
 }
 
 function showAddBookForm() {
@@ -32,7 +33,7 @@ function addBookToLibraryContainer() {
     const latestEntry = myLibrary.slice(-1)[0]
     console.log(latestEntry)
     const newEntry = document.createElement("div");
-    newEntry.classList.add("book")
+    newEntry.classList.add("book");
     let bookDetails = Object.values(latestEntry);
     for (let i = 0; i < 4; i++) {
         let detail = document.createElement("div");
@@ -40,6 +41,12 @@ function addBookToLibraryContainer() {
         console.log(detail)
         newEntry.appendChild(detail);
     }
+    const removeBookButton = document.createElement("button");
+    removeBookButton.classList.add("remove-book");
+    removeBookButton.type = "button";
+    removeBookButton.innerHTML = "Delete";
+    newEntry.appendChild(removeBookButton);
+
     libraryContainer.appendChild(newEntry);
 }
 
@@ -52,8 +59,9 @@ function addBookToLibrary() {
         const author = document.querySelector('#author');
         const pages = document.querySelector('#pages');
         const read = document.querySelector('#read');
+        const index = myLibrary.length + 1;
         
-        const newBook = new book(bookName.value, author.value, pages.value, read.value);
+        const newBook = new book(bookName.value, author.value, pages.value, read.value, index);
         
         myLibrary.push(newBook);
         console.log(myLibrary);
@@ -64,6 +72,10 @@ function addBookToLibrary() {
     }) 
 }
 
+function removeBook() {
+
+    myLibrary.splice()
+}
 function displayLibrary() {
     myLibrary.forEach((book) => {
         addBookToLibraryContainer();
