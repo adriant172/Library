@@ -7,7 +7,7 @@ function book(name, author, numOfPages, read, index) {
     this.name = name;
     this.author = author;
     this.pages = numOfPages;
-    this.read = read
+    this.read = read;
     this.info = function() {
         if (read === true) {
             readYetMessage = "read"
@@ -29,25 +29,50 @@ function showAddBookForm() {
     } )
 }
 
-function addBookToLibraryContainer() {
-    const latestEntry = myLibrary.slice(-1)[0]
-    console.log(latestEntry)
-    const newEntry = document.createElement("div");
-    newEntry.classList.add("book");
-    let bookDetails = Object.values(latestEntry);
-    for (let i = 0; i < 4; i++) {
-        let detail = document.createElement("div");
-        detail.innerHTML = bookDetails[i];
-        console.log(detail)
-        newEntry.appendChild(detail);
+function addBooksToLibraryContainer() {
+    while (libraryContainer.firstChild){
+        libraryContainer.removeChild(libraryContainer.firstChild);
     }
-    const removeBookButton = document.createElement("button");
-    removeBookButton.classList.add("remove-book");
-    removeBookButton.type = "button";
-    removeBookButton.innerHTML = "Delete";
-    newEntry.appendChild(removeBookButton);
+    let counter = 0;
+    myLibrary.forEach((book) => {
+        const latestEntry = book;
+        console.log(latestEntry);
+        const bookIndex = counter
 
-    libraryContainer.appendChild(newEntry);
+        const newEntry = document.createElement("div");
+        newEntry.dataset.index = bookIndex;
+        newEntry.classList.add("book");
+        let bookDetails = Object.values(latestEntry);
+        for (let i = 0; i < 4; i++) {
+            let detail = document.createElement("div");
+            detail.innerHTML = bookDetails[i];
+            // console.log(detail)
+            newEntry.appendChild(detail);
+        }
+        const removeBookButton = document.createElement("button");
+        removeBookButton.classList.add("remove");
+        removeBookButton.type = "button";
+        removeBookButton.innerHTML = "Delete";
+        removeBookButton.addEventListener('click', (event) => {
+            let selectedBookIndex = bookIndex;
+            console.log(selectedBookIndex)
+            removeBook(selectedBookIndex);
+        })
+        newEntry.appendChild(removeBookButton);
+        
+
+        libraryContainer.appendChild(newEntry);
+        counter++;
+    })
+    // let deleteButtons = document.querySelectorAll('.remove');
+    // deleteButtons.forEach((item) => {
+    //     item.addEventListener('click', (event) => {
+    //         let selectedBookIndex = event.target.parentElement.dataset.index;
+    //         console.log(selectedBookIndex)
+    //         removeBook(selectedBookIndex);
+    //     })
+    
+    
 }
 
 function addBookToLibrary() {
@@ -58,37 +83,50 @@ function addBookToLibrary() {
         const bookName = document.querySelector('#bookName');
         const author = document.querySelector('#author');
         const pages = document.querySelector('#pages');
-        const read = document.querySelector('#read');
-        const index = myLibrary.length + 1;
-        
-        const newBook = new book(bookName.value, author.value, pages.value, read.value, index);
+        const read = document.querySelector('#read');      
+    
+        const newBook = new book(bookName.value, author.value, pages.value, read.value, 0);
         
         myLibrary.push(newBook);
+
+        const currentBookIndex = myLibrary.length - 1;
+        myLibrary[currentBookIndex].index = currentBookIndex;
         console.log(myLibrary);
 
-        addBookToLibraryContainer();
+        addBooksToLibraryContainer();
         newBookForm.reset()
-
     }) 
 }
 
-function removeBook() {
-
-    myLibrary.splice()
+function removeBook(index) {
+    myLibrary.splice(index, 1);
+    addBooksToLibraryContainer();
+    
 }
+
 function displayLibrary() {
-    myLibrary.forEach((book) => {
-        addBookToLibraryContainer();
-    })
+    // myLibrary.forEach((item) => {
+    //     addBookToLibraryContainer(item);
+    // })
+    // let deleteButtons = document.querySelectorAll('.remove');
+    // deleteButtons.forEach((item) => {
+    //     item.addEventListener('click', (event) => {
+    //         let selectedBookIndex = event.target.parentElement.dataset.index;
+    //         console.log(selectedBookIndex)
+    //         removeBook(selectedBookIndex);
+    //     })
+    // })
 }
 
 /// END FUNCTIONS ///
 
-showAddBookForm()
+showAddBookForm();
 
-displayLibrary()
+// displayLibrary();
 
-addBookToLibrary()
+addBookToLibrary();
+
+
 
 
 
