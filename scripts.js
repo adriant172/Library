@@ -9,12 +9,12 @@ function book(name, author, numOfPages, read, index) {
     this.pages = numOfPages;
     this.read = read;
     this.info = function() {
-        if (read === true) {
-            readYetMessage = "read"
+        if (this.read === true) {
+            readStatus = "Have Read";
         } else {
-            readYetMessage = "not read yet"
+            readStatus = "Have Not Read";
         }
-        return `${name} by ${author}, ${numOfPages} pages, ${readYetMessage}`
+        return readStatus
     }
     this.index = index;
 }
@@ -43,28 +43,39 @@ function addBooksToLibraryContainer() {
         newEntry.dataset.index = bookIndex;
         newEntry.classList.add("book");
         let bookDetails = Object.values(latestEntry);
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < 3; i++) {
             let detail = document.createElement("div");
             detail.innerHTML = bookDetails[i];
             // console.log(detail)
             newEntry.appendChild(detail);
         }
+        const readStatus = document.createElement("div");
+        readStatus.innerHTML = latestEntry.info();
+        newEntry.appendChild(readStatus);
+        
         const removeBookButton = document.createElement("button");
         removeBookButton.classList.add("remove");
         removeBookButton.type = "button";
         removeBookButton.innerHTML = "Delete";
-        removeBookButton.addEventListener('click', (event) => {
+        removeBookButton.addEventListener('click', () => {
             let selectedBookIndex = bookIndex;
-            console.log(selectedBookIndex)
+            console.log(selectedBookIndex);
             removeBook(selectedBookIndex);
         })
         newEntry.appendChild(removeBookButton);
-        
+
+        const toggleRead = document.createElement("button");
+        toggleRead.classList.add("read-status");
+        toggleRead.type = "button";
+        toggleRead.innerHTML = "Toggle Read Status";
+        toggleRead.addEventListener('click', () => {
+            toggleReadStatus(bookIndex);
+        })
+        newEntry.appendChild(toggleRead)
 
         libraryContainer.appendChild(newEntry);
         counter++;
     })
-    
     
 }
 
@@ -76,9 +87,10 @@ function addBookToLibrary() {
         const bookName = document.querySelector('#bookName');
         const author = document.querySelector('#author');
         const pages = document.querySelector('#pages');
-        const read = document.querySelector('#read');      
+        let read = document.querySelector('#read').checked
+        
     
-        const newBook = new book(bookName.value, author.value, pages.value, read.value, 0);
+        const newBook = new book(bookName.value, author.value, pages.value, read, 0);
         
         myLibrary.push(newBook);
 
@@ -97,6 +109,14 @@ function removeBook(index) {
     
 }
 
+function toggleReadStatus(index) {
+    if (myLibrary[index].read === true) {
+        myLibrary[index].read = false;
+    } else {
+        myLibrary[index].read = true;
+    }
+    addBooksToLibraryContainer();
+}
 
 
 /// END FUNCTIONS ///

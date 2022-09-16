@@ -50,7 +50,7 @@ h1 {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 .book div:nth-child(2)::before {
-    content: "written by: ";
+    content: "Written by: ";
 }
 .book div:nth-child(3)::before {
     content: "Pages: ";
