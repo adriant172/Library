@@ -2,6 +2,8 @@
 body {
     display: grid;
     grid-template-columns: 1fr;
+    background-color: #3e92cc;
+    color: #FFFAFF;
 }
 
 h1 {
@@ -18,7 +20,7 @@ h1 {
 .show-form-button {
     height: 50px;
     width: 100px;
-    background-color: deepskyblue;
+    background-color: #D8315B ;
     border-radius: 25px;
 }
 #add-book {
@@ -37,11 +39,11 @@ h1 {
 .book {
     display: flex;
     flex-direction: column;
-    align-content: center;
+    align-items: center;
     justify-content: center;
     padding: 1.3rem;
     gap: 5px;
-    background-color: #155e75;
+    background-color: #D8315B;
     border-radius: 25px;
     box-shadow: 5px 5px 5px whitesmoke ;
 }
@@ -54,4 +56,9 @@ h1 {
 }
 .book div:nth-child(3)::before {
     content: "Pages: ";
+}
+
+.remove, .read-status {
+    width: 175px;
+    border-radius: 15px;
 }
