@@ -64,13 +64,6 @@ function addBooksToLibraryContainer() {
         libraryContainer.appendChild(newEntry);
         counter++;
     })
-    // let deleteButtons = document.querySelectorAll('.remove');
-    // deleteButtons.forEach((item) => {
-    //     item.addEventListener('click', (event) => {
-    //         let selectedBookIndex = event.target.parentElement.dataset.index;
-    //         console.log(selectedBookIndex)
-    //         removeBook(selectedBookIndex);
-    //     })
     
     
 }
@@ -104,25 +97,12 @@ function removeBook(index) {
     
 }
 
-function displayLibrary() {
-    // myLibrary.forEach((item) => {
-    //     addBookToLibraryContainer(item);
-    // })
-    // let deleteButtons = document.querySelectorAll('.remove');
-    // deleteButtons.forEach((item) => {
-    //     item.addEventListener('click', (event) => {
-    //         let selectedBookIndex = event.target.parentElement.dataset.index;
-    //         console.log(selectedBookIndex)
-    //         removeBook(selectedBookIndex);
-    //     })
-    // })
-}
+
 
 /// END FUNCTIONS ///
 
 showAddBookForm();
 
-// displayLibrary();
 
 addBookToLibrary();
 
