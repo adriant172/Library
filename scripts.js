@@ -82,14 +82,26 @@ function addBooksToLibraryContainer() {
 function addBookToLibrary() {
     const addBookButton = document.querySelector("#add-button");
     const newBookForm =  document.querySelector("#add-book");
+    const invalidMessages = document.querySelectorAll(".invalid-message");
 
     addBookButton.addEventListener('click', (event) => {
+        for (message of invalidMessages) {
+        message.innerHTML = "";
+        }
+
         const bookName = document.querySelector('#bookName');
         const author = document.querySelector('#author');
         const pages = document.querySelector('#pages');
         let read = document.querySelector('#read').checked
         
-    
+        for (item of [bookName, author, pages]) {
+            const elementId = item.id;
+            if (!item.value) {
+                document.querySelector(`#${elementId} + div`).innerHTML = "Invalid. No Input";
+                return
+            }
+        }
+
         const newBook = new book(bookName.value, author.value, pages.value, read, 0);
         
         myLibrary.push(newBook);
@@ -117,6 +129,7 @@ function toggleReadStatus(index) {
     }
     addBooksToLibraryContainer();
 }
+
 
 
 /// END FUNCTIONS ///

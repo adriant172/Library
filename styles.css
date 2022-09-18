@@ -1,9 +1,14 @@
-
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 body {
     display: grid;
     grid-template-columns: 1fr;
     background-color: #3e92cc;
     color: #FFFAFF;
+    justify-items: center;
 }
 
 h1 {
@@ -25,6 +30,46 @@ h1 {
 }
 #add-book {
     display: none;
+}
+fieldset {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    justify-content: center;
+    gap: 5px;
+}
+.form-entry {
+    width: 350px;
+    display: flex;
+    flex-flow: wrap;
+    justify-content:space-between;
+}
+input {
+    width: 300px;
+}
+input:focus {
+    border: solid #e37490;
+}
+fieldset div:nth-child(5) {
+    justify-content: flex-start;
+}
+fieldset div:nth-child(5) > input{
+    width: 50px;
+    border-radius: 15px ;
+}
+.form-entry div:nth-child(3) {
+    color: red;
+    font-size: 12px;
+    align-self: center;
+}
+#add-button {
+    width: 50px;
+    position: relative;
+    top: 20px;
+    left: 275px;
+    border-radius: 10px;
+    background-color: #D8315B ;
 }
 .library-container {
     display: grid;

@@ -13,23 +13,26 @@
         <button type="button" class="show-form-button">NEW BOOK</button>
     </div>
     
-    <form action="post" id="add-book">
+    <form id="add-book">
         <fieldset>
             <legend>Add A Book</legend>
-            <div>
+            <div class="form-entry">
                 <label for="bookName">Book Name: </label>
-                <input type="text" name="bookName" id="bookName">
+                <input type="text" required name="bookName" id="bookName">
+                <div class="invalid-message"></div>
             </div>
-            <div>
+            <div class="form-entry">
                 <label for="author">Author Name: </label>
-                <input type="text" name="author" id="author">
+                <input type="text" required name="author" id="author">
+                <div class="invalid-message" ></div>
             </div>
-            <div>
+            <div class="form-entry">
                 <label for="">Num of Pages: </label>
-                <input type="text" name="pages" id="pages">
+                <input type="number" required minlength="1"  name="pages" id="pages">
+                <div class="invalid-message"></div>
             </div>
-            <div>
-                <label for="read">Read ?</label>
+            <div class="form-entry">
+                <label for="read">Have you read it?</label>
                 <input type="checkbox" id="read" name="read" value="read">
             </div>
             <button type="button" form="add-book" id="add-button">ADD</button>
