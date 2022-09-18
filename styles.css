@@ -47,9 +47,11 @@ fieldset {
 }
 input {
     width: 300px;
+    border-radius: 10px;
 }
 input:focus {
-    border: solid #e37490;
+    outline: none;
+    border: solid 2px #e37490;
 }
 fieldset div:nth-child(5) {
     justify-content: flex-start;
