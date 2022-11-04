@@ -3,12 +3,32 @@ let libraryContainer = document.querySelector(".library-container")
 
 
 /// FUNCTIONS ///
-function book(name, author, numOfPages, read, index) {
-    this.name = name;
-    this.author = author;
-    this.pages = numOfPages;
-    this.read = read;
-    this.info = function() {
+// function book(name, author, numOfPages, read, index) {
+//     this.name = name;
+//     this.author = author;
+//     this.pages = numOfPages;
+//     this.read = read;
+//     this.info = function() {
+//         if (this.read === true) {
+//             readStatus = "Have Read";
+//         } else {
+//             readStatus = "Have Not Read";
+//         }
+//         return readStatus
+//     }
+//     this.index = index;
+// }
+
+class book {
+    constructor(name, author, numOfPages, read, index){
+        this.name = name;
+        this.author = author;
+        this.pages = numOfPages;
+        this.read = read;
+        this.index = index;
+    }
+    info() {
+        let readStatus;
         if (this.read === true) {
             readStatus = "Have Read";
         } else {
@@ -16,7 +36,6 @@ function book(name, author, numOfPages, read, index) {
         }
         return readStatus
     }
-    this.index = index;
 }
 
 function showAddBookForm() {
