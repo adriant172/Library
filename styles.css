@@ -42,12 +42,14 @@ fieldset {
 .form-entry {
     width: 350px;
     display: flex;
-    flex-flow: wrap;
+    flex-direction: column;
+    /* flex-flow: wrap; */
     justify-content:space-between;
 }
 input {
     width: 300px;
     border-radius: 10px;
+    height: 20px;
 }
 input:focus {
     outline: none;
