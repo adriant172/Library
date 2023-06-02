@@ -82,38 +82,52 @@ function addBooksToLibraryContainer() {
 function addBookToLibrary() {
     const addBookButton = document.querySelector("#add-button");
     const newBookForm =  document.querySelector("#add-book");
-    const invalidMessages = document.querySelectorAll(".invalid-message");
+    const errorMessages = document.querySelectorAll(".error-message");
 
     addBookButton.addEventListener('click', (event) => {
-        for (message of invalidMessages) {
+        for (message of errorMessages) {
         message.innerHTML = "";
         }
 
-        const bookName = document.querySelector('#bookName');
+        const bookName = document.querySelector('#bookTitle');
         const author = document.querySelector('#author');
         const pages = document.querySelector('#pages');
         let read = document.querySelector('#read').checked
         
-        for (item of [bookName, author, pages]) {
-            const elementId = item.id;
-            if (!item.value) {
-                document.querySelector(`#${elementId} + div`).innerHTML = "Invalid. No Input";
-                return
-            }
+        if (bookName.validity.valueMissing) {
+            bookName.setCustomValidity("Please input the book title.");
+        } else {
+            bookName.setCustomValidity("");
         }
-
-        const newBook = new book(bookName.value, author.value, pages.value, read, 0);
+        if (author.validity.valueMissing) {
+            author.setCustomValidity("Please input the author's name.");
+        } else {
+            author.setCustomValidity("");
+        }
+        if (pages.validity.valueMissing) {
+            pages.setCustomValidity("Please input the number of pages.");
+        } else {
+            pages.setCustomValidity("");
+        }
+        if (newBookForm.checkValidity()) {
+            const newBook = new book(bookName.value, author.value, pages.value, read, 0);
         
-        myLibrary.push(newBook);
+            myLibrary.push(newBook);
 
-        const currentBookIndex = myLibrary.length - 1;
-        myLibrary[currentBookIndex].index = currentBookIndex;
-        console.log(myLibrary);
+            const currentBookIndex = myLibrary.length - 1;
+            myLibrary[currentBookIndex].index = currentBookIndex;
+            console.log(myLibrary);
 
-        addBooksToLibraryContainer();
-        newBookForm.reset()
-    }) 
+            addBooksToLibraryContainer();
+            event.preventDefault()
+            newBookForm.reset()
+           
+        }
+        
+    })
+
 }
+
 
 function removeBook(index) {
     myLibrary.splice(index, 1);
@@ -129,6 +143,7 @@ function toggleReadStatus(index) {
     }
     addBooksToLibraryContainer();
 }
+
 
 
 
